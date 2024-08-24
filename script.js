@@ -6,6 +6,14 @@ container.style.height = "960px";
 container.style.display = "flex";
 container.style.flexDirection = "column";
 
+// Function to generate a random RGB color
+function generateRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`
+}
+
 // Function to create grid based on the size
 function createGrid(gridSize) {
     container.innerHTML = "";
@@ -19,9 +27,12 @@ function createGrid(gridSize) {
         for (let j=0; j<gridSize; j++) {
             const gridItem = document.createElement("div");
             gridItem.style.flex = "1 1 100%";
-            gridItem.style.border = "solid 1px"
+            gridItem.style.border = "solid 1px";
+
+            // Add event listener for hover with random color
             gridItem.addEventListener("mouseover", () => {
-                gridItem.style.backgroundColor = "grey";
+                gridItem.style.background = generateRandomColor();
+                console.log(generateRandomColor());
             })    
             containerRow.appendChild(gridItem);
         }
