@@ -29,10 +29,18 @@ function createGrid(gridSize) {
             gridItem.style.flex = "1 1 100%";
             gridItem.style.border = "solid 1px";
 
+            let opacity = 0;
+            gridItem.style.background = `rgb(0, 0, 0, ${opacity})`;
+
             // Add event listener for hover with random color
             gridItem.addEventListener("mouseover", () => {
-                gridItem.style.background = generateRandomColor();
-                console.log(generateRandomColor());
+                // if (applyRGB) {
+                //     gridItem.style.background = generateRandomColor();
+                // }
+                // else {
+                opacity += 0.1;
+                gridItem.style.background = `rgb(0, 0, 0, ${opacity})`;
+                // };
             })    
             containerRow.appendChild(gridItem);
         }
@@ -54,7 +62,7 @@ resizeButton.addEventListener("click", () => {
     if (gridSize !== null) {
         gridSize = parseInt(gridSize);
 
-        while (isNaN(gridSize) || gridSize <= 0 || gridSize >= 100) {
+        while (isNaN(gridSize) || gridSize <= 0 || gridSize > 100) {
             alert("Invalid input! Please eneer a number between 0 and 100")
             gridSize = prompt("Enter grid size: ", 16);
         } 
