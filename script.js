@@ -8,6 +8,8 @@ container.style.flexDirection = "column";
 
 // Function to create grid based on the size
 function createGrid(gridSize) {
+    container.innerHTML = "";
+
     for (let i=0; i<gridSize; i++) {
         const containerRow = document.createElement("div");
     
@@ -30,12 +32,21 @@ function createGrid(gridSize) {
 }
 createGrid(16);
 
-// const resizeButton = document.querySelector("#resizeButton");
 
-// console.log(resizeButton);
+// Resize grid size when user click the resize button
+const resizeButton = document.querySelector("#resizeButton");
 
-// function resizeGrid(gridSize) {
-//     console.log("TEST", gridSize);
-// };
+resizeButton.addEventListener("click", () => {
+    let gridSize = prompt("Enter grid size: ", 16);
 
-// resizeButton.addEventListener("click", console.log("AA"));
+    // Validate the input
+    if (gridSize !== null) {
+        gridSize = parseInt(gridSize);
+
+        while (isNaN(gridSize) || gridSize <= 0 || gridSize >= 100) {
+            alert("Invalid input! Please eneer a number between 0 and 100")
+            gridSize = prompt("Enter grid size: ", 16);
+        } 
+        createGrid(gridSize);
+    }
+} );
